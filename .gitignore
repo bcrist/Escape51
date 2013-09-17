@@ -1,0 +1,21 @@
+*.sln
+*.userprefs
+*.csproj
+*.pidb
+*.unityproj
+/Library/FailedAssetImports.txt
+/Library/cache/
+/Library/previews/
+/Library/ScriptAssemblies
+/obj
+/Temp
+/Release
+
+# Windows crap
+[Dd]esktop.ini
+[Tt]humbs.db
+
+# OSX crap
+.DS_Store
+*.swp
+*.Trashes
