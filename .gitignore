@@ -3,13 +3,27 @@
 *.csproj
 *.pidb
 *.unityproj
-/Library/FailedAssetImports.txt
-/Library/cache/
-/Library/previews/
-/Library/ScriptAssemblies
+#/Library/FailedAssetImports.txt
+#/Library/cache/
+#/Library/previews/
+#/Library/ScriptAssemblies
 /obj
 /Temp
+/Library
+/Build
 /Release
+
+!Library/*.asset
+!Library/AssetImportState
+!Library/AssetVersioning.db
+!Library/BuildPlayer.prefs
+!Library/ScriptMapper
+!Library/assetservercachev3
+!Library/expandedItems
+!Library/guidmapper
+!Library/unity default resources
+!Library/unity editor resources
+!Library/metadata/
 
 # Windows crap
 [Dd]esktop.ini
