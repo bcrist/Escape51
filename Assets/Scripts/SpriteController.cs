@@ -70,6 +70,32 @@ public class SpriteController : MonoBehaviour {
 		NextFrame();
 	}
 	
+	public void startAnimationIfNotPlaying(int id)
+	{
+		SpriteAnimation anim = null;
+		
+		if (id >= 0 && id < animations.Count)
+		{
+			anim = animations[id];
+		}
+		
+		SpriteAnimation running = null;
+		if (animationQueue.Count > 0)
+			running = animationQueue.Peek ();
+		
+		if (running != anim)
+		{
+			animationQueue.Clear ();
+			if (anim != null)
+				animationQueue.Enqueue(anim);
+			
+			frame = 0;
+			deltaT = 0;
+			NextFrame ();
+		}
+	}
+	
+	
 	public void queueAnimation(int id)
 	{
 		if (id >= 0 && id < animations.Count)

@@ -32,9 +32,24 @@ public class PlayerController : MonoBehaviour {
 		
 		if (deltaHV > 0)
 		{
-			if (Input.GetAxis("Horizontal") != 0 && moveForce.x == 0)
-				GetComponent<SpriteController>().startAnimation(2);
-			moveForce.x = Input.GetAxis("Horizontal") * horizontalForce;
+			float horizontal = Input.GetAxis ("Horizontal");
+			
+			//if (horizontal * moveForce.x < 0)
+			//{
+				if (horizontal > 0)
+				{
+					GetComponent<SpriteController>().startAnimationIfNotPlaying(0);
+				}
+				else if (horizontal < 0)
+				{
+					GetComponent<SpriteController>().startAnimationIfNotPlaying(1);
+				}
+				else
+				{
+					GetComponent<SpriteController>().startAnimationIfNotPlaying(-1);
+				}
+			//}
+			moveForce.x = horizontal * horizontalForce;
 			
 		}
 		else
@@ -56,7 +71,7 @@ public class PlayerController : MonoBehaviour {
 		if (onGround && Input.GetAxis("Vertical") > 0 && jumpFramesLeft <= jumpTimeout)
 		{
 			jumpFramesLeft = (int)jumpLength;
-			GetComponent<SpriteController>().startAnimation(1);
+			//GetComponent<SpriteController>().startAnimation(1);
 		}
 		
 		transform.localScale = new Vector3(1, (Mathf.Min (0,Input.GetAxis("Vertical")) + 3) / 3.0f, 1);
