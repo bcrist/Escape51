@@ -83,13 +83,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f6e7816f111c740ad741263633bb31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHorizontalVelocity: 3
-  horizontalForce: 22
-  jump: 140
+  maxHorizontalVelocity: 6
+  horizontalForce: 18
+  jump: 200
   jumpLength: 3
-  jumpTimeout: -10
-  normalMaterial: {fileID: 2100000, guid: bb23991e1b0e2074d9698dba4a2206e8, type: 2}
-  groundMaterial: {fileID: 2100000, guid: 9d7c7c2e46c6baf4cbca4e43d0c83e38, type: 2}
+  jumpTimeout: -4
+  normalMaterial: {fileID: 0}
+  groundMaterial: {fileID: 0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

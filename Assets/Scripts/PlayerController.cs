@@ -14,12 +14,17 @@ public class PlayerController : MonoBehaviour {
 	
 	private int jumpFramesLeft = 0;
 	private Vector3 jumpForce;
+	private Vector3 jumpLeftForce;
+	private Vector3 jumpRightForce;
 	private Vector3 moveForce;
+	private int jumpMode = 0;
 	
 	// Use this for initialization
 	void Start()
 	{
-		jumpForce = new Vector3(0, jump, 0);
+		jumpForce = new Vector3(0, jump* 0.9f, 0);
+		jumpLeftForce = new Vector3(-jump * 0.5f, jump * 0.7f, 0);
+		jumpRightForce = new Vector3(jump * 0.5f, jump * 0.7f, 0);
 		moveForce = new Vector3();
 	}
 	
@@ -71,7 +76,18 @@ public class PlayerController : MonoBehaviour {
 		if (onGround && Input.GetAxis("Vertical") > 0 && jumpFramesLeft <= jumpTimeout)
 		{
 			jumpFramesLeft = (int)jumpLength;
+			jumpMode = 0;
 			//GetComponent<SpriteController>().startAnimation(1);
+		}
+		else if (onWallLeft && !onWallRight && Input.GetAxis ("Vertical") > 0 && jumpFramesLeft <= jumpTimeout)
+		{
+			jumpFramesLeft = (int)jumpLength;
+			jumpMode = 1;
+		}
+		else if (onWallRight && !onWallLeft && Input.GetAxis("Vertical") > 0 && jumpFramesLeft <= jumpTimeout)
+		{
+			jumpFramesLeft = (int)jumpLength;
+			jumpMode = 2;
 		}
 		
 		transform.localScale = new Vector3(1, (Mathf.Min (0,Input.GetAxis("Vertical")) + 3) / 3.0f, 1);
@@ -98,7 +114,22 @@ public class PlayerController : MonoBehaviour {
 		{
 			--jumpFramesLeft;
 			if (jumpFramesLeft > 0)
-				rigidbody.AddForce(jumpForce);
+			{
+				switch (jumpMode)
+				{
+				case 0:
+					rigidbody.AddForce (rigidbody.velocity * rigidbody.velocity.magnitude * -1f);
+					rigidbody.AddForce(jumpForce); break;
+				case 1:
+					rigidbody.AddForce (rigidbody.velocity * rigidbody.velocity.magnitude  * -1.25f);
+					rigidbody.AddForce(jumpRightForce); break;
+				case 2:
+					rigidbody.AddForce (rigidbody.velocity * rigidbody.velocity.magnitude  * -1.25f);
+					rigidbody.AddForce(jumpLeftForce); break;
+				default:
+					break;
+				}
+			}
 		}
 	}
 }
