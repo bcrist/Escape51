@@ -17,11 +17,23 @@ public class GameManager : MonoBehaviour {
 			inst_ = mgr.GetComponent<GameManager>();
 			DontDestroyOnLoad(mgr);
 		}
+		
+		inst_.playerState.healthBarRenderer = GameObject.FindGameObjectWithTag("Player").transform.Find("Healthbar").GetComponent<MeshRenderer>();
 	}
 
+	
+	public GameManager()
+	{
+		score = 0;
+		playerState = new ActorState();
+	}
+	
+	
 	public GUIText guiScore;
 	
 	private int score;
+	
+	public ActorState playerState;
 	
 	
 	

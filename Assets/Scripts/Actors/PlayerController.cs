@@ -1,16 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : ActorController {
 	
 	public float maxHorizontalVelocity = 3;
 	public float horizontalForce = 10;
 	public float jump = 600;
 	public float jumpLength = 3;
 	public float jumpTimeout = -10;
-	
-	public Material normalMaterial;
-	public Material groundMaterial;
 	
 	private int jumpFramesLeft = 0;
 	private Vector3 jumpForce;
@@ -26,6 +23,13 @@ public class PlayerController : MonoBehaviour {
 		jumpLeftForce = new Vector3(-jump * 0.5f, jump * 0.7f, 0);
 		jumpRightForce = new Vector3(jump * 0.5f, jump * 0.7f, 0);
 		moveForce = new Vector3();
+		
+		actorState = GameManager.instance.playerState;
+	}
+	
+	void OnDestroy()
+	{
+		Destroy(transform.Find ("Healthbar").renderer.material);
 	}
 	
 	// Update is called once per frame
@@ -68,9 +72,9 @@ public class PlayerController : MonoBehaviour {
 		float centerHeight = transform.lossyScale.y * 0.5f;
 		float radius = transform.lossyScale.x * 0.5f;
 		
-		bool onGround = Physics.Raycast(new Ray(rigidbody.position, -transform.up), centerHeight + 0.05f);
-		bool onWallLeft = Physics.Raycast(new Ray(rigidbody.position, -transform.right), radius + 0.05f);
-		bool onWallRight = Physics.Raycast(new Ray(rigidbody.position, transform.right), radius + 0.05f);
+		bool onGround = Physics.Raycast(rigidbody.position, -transform.up, centerHeight + 0.05f);
+		bool onWallLeft = Physics.Raycast(rigidbody.position, -transform.right, radius + 0.05f);
+		bool onWallRight = Physics.Raycast(rigidbody.position, transform.right, radius + 0.05f);
 		
 	
 		if (onGround && Input.GetAxis("Vertical") > 0 && jumpFramesLeft <= jumpTimeout)

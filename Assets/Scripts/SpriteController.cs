@@ -152,7 +152,7 @@ public class SpriteController : MonoBehaviour {
 	
 	void OnDestroy()
 	{
-        DestroyImmediate(renderer.material);
+        Destroy(renderer.material);
     }
 	
 	void ParseXmlSpriteData()
