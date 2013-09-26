@@ -95,6 +95,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guiScore: {fileID: 13200002}
+  healthBarRect:
+    serializedVersion: 2
+    x: 10
+    y: 10
+    width: 300
+    height: 16
+  healthbarTexture: {fileID: 2800000, guid: 40fd1dc111e6bfb4d894bc773732d4e3, type: 3}
 --- !u!132 &13200000
 GUIText:
   m_ObjectHideFlags: 1

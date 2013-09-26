@@ -3,9 +3,22 @@ using UnityEngine;
 
 public class ActorController : MonoBehaviour
 {
-	public ActorController ()
+	public ActorState actorState;
+	
+	public void Start()
 	{
+		healthbarRenderer = transform.Find("Healthbar").GetComponent<Renderer>();
+		if (healthbarRenderer != null)
+		{
+			actorState = new ActorState(healthbarRenderer);
+		}
 	}
 	
-	public ActorState actorState;
+	public void OnDestroy()
+	{
+		if (healthbarRenderer != null)
+			Destroy(healthbarRenderer.material);
+	}
+	
+	private Renderer healthbarRenderer;
 }

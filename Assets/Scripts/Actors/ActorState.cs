@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class ActorState
 {
-	public ActorState ()
+	public ActorState (Renderer healthbarRenderer)
 	{
-		healthBarRenderer = null;
+		healthbarRenderer_ = healthbarRenderer;
 		
 		maxHealth_ = 1000;
 		limpHealth_ = 0;
@@ -35,11 +35,8 @@ public class ActorState
 		set {
 			health_ = Mathf.Max (Mathf.Min(value, maxHealth_), 0);
 			
-			if (healthBarRenderer != null)
-			{
-				Debug.Log ("Updating HealthBar: " + healthBarRenderer.gameObject.name + ": " + getHealthRatioMissing () * 0.5f);
-				healthBarRenderer.material.mainTextureOffset = new Vector2(getHealthRatioMissing() * 0.5f, 0);
-			}	
+			if (healthbarRenderer_ != null)
+				healthbarRenderer_.material.mainTextureOffset = new Vector2(getHealthRatioMissing() * 0.5f, 0);
 		}
 	}
 	
@@ -101,8 +98,7 @@ public class ActorState
 		health -= Mathf.Max((int)(health * ratio), 1);
 	}
 	
-	public MeshRenderer healthBarRenderer;
-	
+	private Renderer healthbarRenderer_;
 	private int health_;
 	private int maxHealth_;
 	private int limpHealth_;

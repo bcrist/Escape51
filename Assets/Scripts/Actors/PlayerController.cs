@@ -16,6 +16,8 @@ public class PlayerController : ActorController {
 	private Vector3 moveForce;
 	private int jumpMode = 0;
 	
+	
+	
 	// Use this for initialization
 	void Start()
 	{
@@ -25,11 +27,6 @@ public class PlayerController : ActorController {
 		moveForce = new Vector3();
 		
 		actorState = GameManager.instance.playerState;
-	}
-	
-	void OnDestroy()
-	{
-		Destroy(transform.Find ("Healthbar").renderer.material);
 	}
 	
 	// Update is called once per frame

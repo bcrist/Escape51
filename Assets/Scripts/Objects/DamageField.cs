@@ -58,20 +58,22 @@ public class DamageField : MonoBehaviour {
 	{
 		foreach (ActorController ac in actors_)
 		{
-			if (ratioHealing > 0)
-				ac.actorState.healRatio(ratioHealing);
-			else if (ratioMissingHealing > 0)
-				ac.actorState.healRatioMissing(ratioMissingHealing);
-			else if (fixedHealing > 0)
-				ac.actorState.heal(fixedHealing);
-			
-			
-			if (ratioDamage > 0)
-				ac.actorState.takeDamageRatio(ratioDamage);
-			else if (ratioRemainingDamage > 0)
-				ac.actorState.takeDamageRatioRemaining(ratioRemainingDamage);
-			else if (fixedDamage > 0)
-				ac.actorState.takeDamage(fixedDamage);
+			if (ac != null)
+			{
+				if (ratioHealing > 0)
+					ac.actorState.healRatio(ratioHealing);
+				else if (ratioMissingHealing > 0)
+					ac.actorState.healRatioMissing(ratioMissingHealing);
+				else if (fixedHealing > 0)
+					ac.actorState.heal(fixedHealing);
+				
+				if (ratioDamage > 0)
+					ac.actorState.takeDamageRatio(ratioDamage);
+				else if (ratioRemainingDamage > 0)
+					ac.actorState.takeDamageRatioRemaining(ratioRemainingDamage);
+				else if (fixedDamage > 0)
+					ac.actorState.takeDamage(fixedDamage);
+			}
 		}
 	}
 }

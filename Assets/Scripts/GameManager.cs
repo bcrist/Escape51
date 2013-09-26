@@ -17,15 +17,12 @@ public class GameManager : MonoBehaviour {
 			inst_ = mgr.GetComponent<GameManager>();
 			DontDestroyOnLoad(mgr);
 		}
-		
-		inst_.playerState.healthBarRenderer = GameObject.FindGameObjectWithTag("Player").transform.Find("Healthbar").GetComponent<MeshRenderer>();
 	}
-
 	
-	public GameManager()
+	void Awake()
 	{
 		score = 0;
-		playerState = new ActorState();
+		playerState = new ActorState(null);  // transform.Find ("Healthbar").GetComponent<Renderer>();
 	}
 	
 	
@@ -34,9 +31,15 @@ public class GameManager : MonoBehaviour {
 	private int score;
 	
 	public ActorState playerState;
+	public Rect healthBarRect;
 	
+	public Texture healthbarTexture;
 	
-	
+	void OnGUI() {
+        if (Event.current.type.Equals(EventType.Repaint))
+            Graphics.DrawTexture(healthBarRect, healthbarTexture, new Rect(playerState.getHealthRatioMissing() * 0.5f, 0, 0.5f, 1.0f), 0, 0, 0, 0);
+        
+    }
 	
 	public void AwardPoints(int points)
 	{
