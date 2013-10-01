@@ -3,28 +3,9 @@ using System.Collections;
 
 public class PlayerController : ActorController {
 	
-	public float maxHorizontalVelocity = 3;
-	public float horizontalForce = 10;
-	public float jump = 600;
-	public float jumpLength = 3;
-	public float jumpTimeout = -10;
-	
-	private int jumpFramesLeft = 0;
-	private Vector3 jumpForce;
-	private Vector3 jumpLeftForce;
-	private Vector3 jumpRightForce;
-	private Vector3 moveForce;
-	private int jumpMode = 0;
-	
-	
-	
-	// Use this for initialization
-	void Start()
+	new void Start()
 	{
-		jumpForce = new Vector3(0, jump* 0.9f, 0);
-		jumpLeftForce = new Vector3(-jump * 0.5f, jump * 0.7f, 0);
-		jumpRightForce = new Vector3(jump * 0.5f, jump * 0.7f, 0);
-		moveForce = new Vector3();
+		Start_();
 		
 		actorState = GameManager.instance.playerState;
 	}
@@ -40,23 +21,20 @@ public class PlayerController : ActorController {
 		{
 			float horizontal = Input.GetAxis ("Horizontal");
 			
-			//if (horizontal * moveForce.x < 0)
-			//{
-				if (horizontal > 0)
-				{
-					GetComponent<SpriteController>().startAnimationIfNotPlaying(0);
-				}
-				else if (horizontal < 0)
-				{
-					GetComponent<SpriteController>().startAnimationIfNotPlaying(1);
-				}
-				else
-				{
-					GetComponent<SpriteController>().startAnimationIfNotPlaying(-1);
-				}
-			//}
+			if (horizontal > 0)
+			{
+				GetComponent<SpriteController>().startAnimationIfNotPlaying(0);
+			}
+			else if (horizontal < 0)
+			{
+				GetComponent<SpriteController>().startAnimationIfNotPlaying(1);
+			}
+			else
+			{
+				GetComponent<SpriteController>().startAnimationIfNotPlaying(-1);
+			}
+	
 			moveForce.x = horizontal * horizontalForce;
-			
 		}
 		else
 		{
@@ -95,13 +73,8 @@ public class PlayerController : ActorController {
 		
 		if (onGround)
 		{
-			//renderer.material = groundMaterial;
 			if (moveForce.x != 0)
 				rigidbody.AddForce(Physics.gravity * -0.75f);
-		}
-		else
-		{
-			//renderer.material = normalMaterial;
 		}
 			
 		if (!(onWallLeft && moveForce.x < 0 || onWallRight && moveForce.x > 0))
