@@ -70,6 +70,24 @@ public class SpriteController : MonoBehaviour {
 		NextFrame();
 	}
 	
+	public int getCurrentAnimation()
+	{
+		SpriteAnimation running = null;
+		if (animationQueue.Count > 0)
+			running = animationQueue.Peek ();
+		
+		if (running == null)
+			return -1;
+		
+		for (int i = 0; i < animations.Count; ++i)
+		{
+			if (animations[i] == running)
+				return i;
+		}
+		
+		return -1;
+	}
+	
 	public void startAnimationIfNotPlaying(int id)
 	{
 		SpriteAnimation anim = null;
@@ -109,6 +127,11 @@ public class SpriteController : MonoBehaviour {
 				NextFrame();
 			}
 		}
+	}
+	
+	public int queueLength()
+	{
+		return animationQueue.Count;
 	}
 	
 	void Update()

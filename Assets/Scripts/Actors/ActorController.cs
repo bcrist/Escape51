@@ -8,8 +8,7 @@ public class ActorController : MonoBehaviour
 		RunRight,
 		Idle,
 		Crouch,
-		Jump,
-		Attack
+		Jump
 	}
 	
 	private enum JumpMode {
@@ -22,8 +21,8 @@ public class ActorController : MonoBehaviour
 	public float horizontalForce = 10;
 	public float jumpForce = 600;
 	public float jumpLength = 3;
-	public float jumpTimeout = -10;
-		   
+	public float jumpTimeout = -10;	
+	
 	public int lIdleAnim = 0;
 	public int rIdleAnim = 1;
 	public int lFallingIdleAnim = 2;
@@ -36,15 +35,13 @@ public class ActorController : MonoBehaviour
 	public int rJumpAnim = 9;
 	public int lJumpLeftAnim = 10;
 	public int rJumpRightAnim = 11;
-	public int lCrouchBeginAnim = 12;
-	public int rCrouchBeginAnim = 13;
-	public int lAttackAnim = 14;
-	public int rAttackAnim = 15;
+	public int lCrouchAnim = 12;
+	public int rCrouchAnim = 13;
 	
 	public Vector3 leftFull = new Vector3(-1.0f, -0.15f, 0.0f);
 	public Vector3 leftHalf = new Vector3(-1.0f, -0.2f, -1.0f);
-	public Vector3 rightHalf = new Vector3(1.0f, -0.15f, -1.0f);
-	public Vector3 rightFull = new Vector3(1.0f, -0.2f, -1.0f);
+	public Vector3 rightHalf = new Vector3(1.0f, -0.2f, -1.0f);
+	public Vector3 rightFull = new Vector3(1.0f, -0.15f, 0.0f);
 	
 	
 	public ActorState actorState;
@@ -52,10 +49,10 @@ public class ActorController : MonoBehaviour
 	protected float horizontalIntention = 0;
 	protected bool jumpIntention = false;
 	protected bool crouchIntention = false;
-	protected bool attackIntention = false;
 	
 	protected ActorAction currentAction = ActorAction.Idle;
 	protected Vector3 facingDirection;
+	protected int lastActiveAnimation;
 	
 	private Renderer healthbarRenderer;
 	
@@ -69,11 +66,6 @@ public class ActorController : MonoBehaviour
 	public void Start()
 	{
 		ActorControllerStart_ ();
-	}
-	
-	public void Update()
-	{
-		ActorControllerUpdate_();
 	}
 	
 	public void FixedUpdate()
@@ -110,10 +102,6 @@ public class ActorController : MonoBehaviour
 		facingDirection = leftHalf;
 	}
 	
-	protected void ActorControllerUpdate_()
-	{
-		
-	}
 	
 	protected void ActorControllerFixedUpdate_()
 	{
@@ -133,24 +121,24 @@ public class ActorController : MonoBehaviour
 		bool onWallRight = Physics.Raycast(right, leftOffset);
 		
 		float hVelocity = rigidbody.velocity.x;
-		ActorAction lastAction = currentAction;
-		float lastFacingDirection = facingDirection.x;
+		//ActorAction lastAction = currentAction;
+		//float lastFacingDirection = facingDirection.x;
 		
 		
 		
 		// Calculate new currentAction, facingDirection, and jump* values.
-		if (Mathf.Abs (horizontalIntention) > Mathf.Epsilon)
+		if (Mathf.Abs (horizontalIntention) > 0.1f)
 			currentAction = horizontalIntention > 0 ? ActorAction.RunRight : ActorAction.RunLeft;
 		else
 			currentAction = ActorAction.Idle;
 		
-		if (crouchIntention)
+		if (crouchIntention) // && (!onGround || Mathf.Abs (hVelocity) < 0.2f))
 			currentAction = ActorAction.Crouch;
 		
-		if (Mathf.Abs(hVelocity) > Mathf.Epsilon)
+		if (Mathf.Abs(hVelocity) > 0.1f)
 			facingDirection = hVelocity > 0 ? rightFull : leftFull;
 		else
-			facingDirection = hVelocity > 0 ? rightHalf : leftHalf;
+			facingDirection = facingDirection.x > 0 ? rightHalf : leftHalf;
 		
 		if (jumpIntention)
 		{
@@ -182,7 +170,57 @@ public class ActorController : MonoBehaviour
 		
 		
 		// Update animation if necessary
-		//GetComponent<SpriteController>().startAnimation(1);
+		bool facingRight = facingDirection.x > 0;
+		bool startAnimImmediately = false;
+		int animationId = facingRight ? rIdleAnim : lIdleAnim;
+		
+		if (currentAction == ActorAction.Jump)
+		{
+			if (jumpMode == JumpMode.JumpLeft)
+				animationId = lJumpLeftAnim;
+			else if (jumpMode == JumpMode.JumpRight)
+				animationId = rJumpRightAnim;
+			else
+				animationId = facingRight ? rJumpAnim : lJumpAnim;
+			startAnimImmediately = true;
+		}
+		else if (!onGround)
+		{
+			if (currentAction == ActorAction.RunLeft)
+				animationId = lRunAnim;
+			else if (currentAction == ActorAction.RunRight)
+				animationId = rRunAnim;
+			else if (onWallLeft && currentAction == ActorAction.Crouch)
+			{
+				animationId = rWallGrabAnim;
+				startAnimImmediately = true;
+			}
+			else if (onWallRight && currentAction == ActorAction.Crouch)
+			{
+				animationId = lWallGrabAnim;
+				startAnimImmediately = true;
+			}
+			else 
+				animationId = facingRight ? rFallingIdleAnim : lFallingIdleAnim;
+		}
+		else // on ground, not jumping
+		{
+			if (hVelocity > 0.2f || (hVelocity > 0 && currentAction == ActorAction.RunRight))
+				animationId = rRunAnim;
+			else if (hVelocity < -0.2f || (hVelocity < 0 && currentAction == ActorAction.RunLeft))
+				animationId = lRunAnim;
+			else if (currentAction == ActorAction.Crouch)
+				animationId = facingRight ? rCrouchAnim : lCrouchAnim;
+		}
+		
+		if (animationId != lastActiveAnimation)
+		{
+			lastActiveAnimation = animationId;
+			if (startAnimImmediately)
+				GetComponent<SpriteController>().startAnimation(animationId);
+			else
+				GetComponent<SpriteController>().queueAnimation(animationId);
+		}
 		
 		
 		

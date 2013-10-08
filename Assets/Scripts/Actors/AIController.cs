@@ -23,10 +23,9 @@ public class AIController : ActorController {
 	
 	protected AIState aiState;
 	
-	new void Update()
+	void Update()
 	{
 		AIControllerUpdate_();
-		ActorControllerUpdate_();
 	}
 	
 	void AIControllerUpdate_()

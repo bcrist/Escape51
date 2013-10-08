@@ -9,13 +9,11 @@ public class PlayerController : ActorController {
 		actorState = GameManager.instance.playerState;
 	}
 	
-	new void Update()
+	void Update()
 	{
 		horizontalIntention = Input.GetAxis ("Horizontal");
 		float vertical = Input.GetAxis ("Vertical");
 		jumpIntention = vertical > 0;
 		crouchIntention = vertical < 0;
-		
-		ActorControllerUpdate_ ();
 	}
 }

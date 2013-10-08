@@ -1,49 +1,154 @@
 <?xml version="1.0" ?>
-<spritedata xscale="128" yscale="128" timescale="1000">
+<spritedata xscale="512" yscale="512" timescale="1000">
     <image>
         <id>0</id>
         <x>0</x>
-        <y>64</y>
-        <w>64</w>
-        <h>64</h>
+        <y>384</y>
+        <w>128</w>
+        <h>128</h>
     </image>
 
     <image>
         <id>1</id>
-        <x>64</x>
-        <y>64</y>
-        <w>64</w>
-        <h>64</h>
+        <x>128</x>
+        <y>384</y>
+        <w>128</w>
+        <h>128</h>
     </image>
 	
 	<image>
 		<id>2</id>
-		<x>64</x>
-		<y>64</y>
-		<w>-64</w>
-		<h>64</h>
+		<x>256</x>
+		<y>384</y>
+		<w>128</w>
+		<h>128</h>
 	</image>
 	
 	<image>
 		<id>3</id>
-		<x>128</x>
-		<y>64</y>
-		<w>-64</w>
-		<h>64</h>
+		<x>384</x>
+		<y>384</y>
+		<w>128</w>
+		<h>128</h>
 	</image>
 	
-	<animation>
-		<id>0</id>
-		<next>0</next>
-		<frame id="0" length="120" />
-		<frame id="1" length="120" />
-	</animation>
 	
-	<animation>
-		<id>1</id>
-		<next>1</next>
-		<frame id="2" length="120" />
-		<frame id="3" length="120" />
-	</animation>
+	<image>
+        <id>4</id>
+        <x>0</x>
+        <y>256</y>
+        <w>128</w>
+        <h>128</h>
+    </image>
+
+    <image>
+        <id>5</id>
+        <x>128</x>
+        <y>256</y>
+        <w>128</w>
+        <h>128</h>
+    </image>
+	
+	<image>
+		<id>6</id>
+		<x>256</x>
+		<y>256</y>
+		<w>128</w>
+		<h>128</h>
+	</image>
+	
+	<image>
+		<id>7</id>
+		<x>384</x>
+		<y>256</y>
+		<w>128</w>
+		<h>128</h>
+	</image>
+	
+	<image>
+        <id>8</id>
+        <x>0</x>
+        <y>128</y>
+        <w>128</w>
+        <h>128</h>
+    </image>
+
+    <image>
+        <id>9</id>
+        <x>128</x>
+        <y>128</y>
+        <w>128</w>
+        <h>128</h>
+    </image>
+	
+	<image>
+		<id>10</id>
+		<x>256</x>
+		<y>128</y>
+		<w>128</w>
+		<h>128</h>
+	</image>
+	
+	<image>
+		<id>11</id>
+		<x>384</x>
+		<y>128</y>
+		<w>128</w>
+		<h>128</h>
+	</image>
+	
+	
+	<image>
+        <id>12</id>
+        <x>0</x>
+        <y>0</y>
+        <w>128</w>
+        <h>128</h>
+    </image>
+
+    <image>
+        <id>13</id>
+        <x>128</x>
+        <y>0</y>
+        <w>128</w>
+        <h>128</h>
+    </image>
+	
+	<image>
+		<id>14</id>
+		<x>256</x>
+		<y>0</y>
+		<w>128</w>
+		<h>128</h>
+	</image>
+	
+	<image>
+		<id>15</id>
+		<x>384</x>
+		<y>0</y>
+		<w>128</w>
+		<h>128</h>
+	</image>
+	
+	
+	
+	
+	<animation><id>0</id><next>0</next><frame id="0" length="120" /></animation>
+	<animation><id>1</id><next>1</next><frame id="1" length="120" /></animation>
+	<animation><id>2</id><next>2</next><frame id="2" length="120" /></animation>
+	<animation><id>3</id><next>3</next><frame id="3" length="120" /></animation>
+	<animation><id>4</id><next>4</next><frame id="4" length="120" /></animation>
+	<animation><id>5</id><next>5</next><frame id="5" length="120" /></animation>
+	<animation><id>6</id><next>6</next><frame id="6" length="120" /></animation>
+	<animation><id>7</id><next>7</next><frame id="7" length="120" /></animation>
+	<animation><id>8</id><next>8</next><frame id="8" length="500" /></animation>
+	<animation><id>9</id><next>9</next><frame id="9" length="500" /></animation>
+	<animation><id>10</id><next>10</next><frame id="10" length="500" /></animation>
+	<animation><id>11</id><next>11</next><frame id="11" length="500" /></animation>
+	<animation><id>12</id><next>12</next><frame id="12" length="120" /></animation>
+	<animation><id>13</id><next>13</next><frame id="13" length="120" /></animation>
+	<animation><id>14</id><next>14</next><frame id="14" length="120" /></animation>
+	<animation><id>15</id><next>15</next><frame id="15" length="120" /></animation>
+	
 	
 </spritedata>
