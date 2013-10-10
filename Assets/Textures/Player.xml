@@ -117,20 +117,49 @@
 	<image>
 		<id>14</id>
 		<x>256</x>
-		<y>0</y>
+		<y>64</y>
 		<w>128</w>
-		<h>128</h>
+		<h>64</h>
 	</image>
 	
 	<image>
 		<id>15</id>
 		<x>384</x>
-		<y>0</y>
+		<y>64</y>
 		<w>128</w>
-		<h>128</h>
+		<h>64</h>
 	</image>
 	
+	<image>
+		<id>16</id>
+		<x>256</x>
+		<y>0</y>
+		<w>128</w>
+		<h>64</h>
+	</image>
 	
+	<image>
+		<id>17</id>
+		<x>384</x>
+		<y>0</y>
+		<w>128</w>
+		<h>64</h>
+	</image>
+	
+	<image>
+		<id>18</id>
+		<x>0</x>
+		<y>0</y>
+		<w>256</w>
+		<h>256</h>
+	</image>
+	<image>
+		<id>19</id>
+		<x>0</x>
+		<y>0</y>
+		<w>512</w>
+		<h>512</h>
+	</image>
 	
 	
 	<animation><id>0</id><next>0</next><frame id="0" length="120" /></animation>
@@ -147,8 +176,11 @@
 	<animation><id>11</id><next>11</next><frame id="11" length="500" /></animation>
 	<animation><id>12</id><next>12</next><frame id="12" length="120" /></animation>
 	<animation><id>13</id><next>13</next><frame id="13" length="120" /></animation>
-	<animation><id>14</id><next>14</next><frame id="14" length="120" /></animation>
-	<animation><id>15</id><next>15</next><frame id="15" length="120" /></animation>
-	
+	<animation><id>14</id><next>14</next><frame id="14" length="220" /></animation>
+	<animation><id>15</id><next>15</next><frame id="15" length="220" /></animation>
+	<animation><id>16</id><next>16</next><frame id="16" length="220" /></animation>
+	<animation><id>17</id><next>17</next><frame id="17" length="220" /></animation>
+	<animation><id>18</id><next>18</next><frame id="18" length="1000" /></animation>
+	<animation><id>19</id><next>19</next><frame id="19" length="1000" /></animation>
 	
 </spritedata>

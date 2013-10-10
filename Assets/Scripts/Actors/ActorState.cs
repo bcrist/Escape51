@@ -65,19 +65,22 @@ public class ActorState
 	// heal a fixed amount of health
 	public void heal(int amount)
 	{
-		health += Mathf.Max(amount, 1);
+		if (!isDead())
+			health += Mathf.Max(amount, 1);
 	}
 	
 	// heal an amount equal to a percentage of the actor's maximum health
 	public void healRatio(float ratio)
 	{
-		health += Mathf.Max((int)(maxHealth * ratio), 1);
+		if (!isDead())
+			health += Mathf.Max((int)(maxHealth * ratio), 1);
 	}
 	
 	// Heal an amount equal to a percentage of the damage the actor has sustained.
 	public void healRatioMissing(float ratio)
 	{
-		health += Mathf.Max((int)((maxHealth - health) * ratio), 1);
+		if (!isDead())
+			health += Mathf.Max((int)((maxHealth - health) * ratio), 1);
 	}
 	
 	// Take a fixed amount of damage.
