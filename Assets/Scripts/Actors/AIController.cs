@@ -73,7 +73,11 @@ public class AIController : ActorController {
 					horizontalIntention = -toPlayer.x;
 				else
 					horizontalIntention = 0;
-				attackIntention = range < attackRange;
+				
+				bool facingRight = facingDirection.x > 0;
+				bool playerToRight = toPlayer.x > 0;
+				
+				attackIntention = range < attackRange && (facingRight && playerToRight || !facingRight && !playerToRight);
 				jumpIntention = false;
 				crouchIntention = horizontalIntention == 0;
 			}
