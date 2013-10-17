@@ -36,22 +36,24 @@ public class PlayerController : ActorController {
 			
 			if (attackDelayLeft <= 0)
 			{
-				// carry out attack
+				// begin attack
 				Collider collider = facingDirection.x > 0 ? rightMeleeCollider : leftMeleeCollider;
 				
 				collider.enabled = true;
 				attackLengthLeft = attackLength;
-				Debug.Log ("Starting attack");
 			}
 		}
 		
+		Vector3 screenPos = Input.mousePosition;
+		screenPos.z = Camera.main.GetComponent<CameraController>().cameraOffset.z * -1.0f;
+		horizontalLookIntention = Camera.main.ScreenToWorldPoint(screenPos).x - transform.position.x;
 		
-		
-		horizontalIntention = Input.GetAxis ("Horizontal");
-		float vertical = Input.GetAxis ("Vertical");
-		attackIntention = Input.GetButton ("Fire1");
+		horizontalIntention = Input.GetAxis("Horizontal");
+		float vertical = Input.GetAxis("Vertical");
+		attackIntention = Input.GetButton("Fire1");
 		jumpIntention = vertical > 0;
 		crouchIntention = vertical < 0;
+		
 		alive = !actorState.isDead();
 	}
 	
@@ -65,20 +67,8 @@ public class PlayerController : ActorController {
 			{
 				leftMeleeCollider.enabled = false;
 				rightMeleeCollider.enabled = false;
-				Debug.Log ("Ending Attack");
 			}
 		}
-	}
-	
-	void OnTriggerStay(Collider other)
-	{
-		Debug.Log ("Attack Successful");
-		leftMeleeCollider.enabled = false;
-		rightMeleeCollider.enabled = false;
-		
-		ActorController otherAC = other.gameObject.GetComponent<ActorController>();
-		
-		otherAC.actorState.takeDamage(attackDamage);
 	}
 	
 	protected override void BeginAttack()

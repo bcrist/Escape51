@@ -46,19 +46,4 @@ public class GameManager : MonoBehaviour {
 		score += points;
  		guiScore.text = score.ToString();
 	}
-	
-	
-	
-	
-	// Use this for initialization
-	void Start () 
-	{
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
-	}
 }

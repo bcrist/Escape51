@@ -1,6 +1,31 @@
 using System;
 using UnityEngine;
 
+[System.Serializable]
+public class Animations
+{
+	public int lIdle = 0;
+	public int rIdle = 1;
+	public int lFallingIdle = 2;
+	public int rFallingIdle = 3;
+	public int lWallGrab = 4;
+	public int rWallGrab = 5;
+	public int lRun = 6;
+	public int rRun = 7;
+	public int lJump = 8;
+	public int rJump = 9;
+	public int lJumpLeft = 10;
+	public int rJumpRight = 11;
+	public int lCrouch = 12;
+	public int rCrouch = 13;
+	public int lAttack = 14;
+	public int rAttack = 15;
+	public int lRunningAttack = 16;
+	public int rRunningAttack = 17;
+	public int lDeath = 18;
+	public int rDeath = 19;
+}
+
 public class ActorController : MonoBehaviour
 {
 	public enum ActorAction {
@@ -39,27 +64,8 @@ public class ActorController : MonoBehaviour
 	public float deadWidth = 0.3f;
 	public Vector3 deadOffset;
 	
-	public int lIdleAnim = 0;
-	public int rIdleAnim = 1;
-	public int lFallingIdleAnim = 2;
-	public int rFallingIdleAnim = 3;
-	public int lWallGrabAnim = 4;
-	public int rWallGrabAnim = 5;
-	public int lRunAnim = 6;
-	public int rRunAnim = 7;
-	public int lJumpAnim = 8;
-	public int rJumpAnim = 9;
-	public int lJumpLeftAnim = 10;
-	public int rJumpRightAnim = 11;
-	public int lCrouchAnim = 12;
-	public int rCrouchAnim = 13;
-	public int lAttackAnim = 14;
-	public int rAttackAnim = 15;
-	public int lRunningAttackAnim = 16;
-	public int rRunningAttackAnim = 17;
-	public int lDeathAnim = 18;
-	public int rDeathAnim = 19;
-	
+	public Animations animations;
+		
 	public Vector3 leftFull = new Vector3(-1.0f, -0.15f, 0.0f);
 	public Vector3 leftHalf = new Vector3(-1.0f, -0.2f, -1.0f);
 	public Vector3 rightHalf = new Vector3(1.0f, -0.2f, -1.0f);
@@ -68,6 +74,7 @@ public class ActorController : MonoBehaviour
 	public ActorState actorState;
 	
 	protected float horizontalIntention = 0;
+	protected float horizontalLookIntention = 0;
 	protected bool jumpIntention = false;
 	protected bool crouchIntention = false;
 	protected bool attackIntention = false;
@@ -151,10 +158,6 @@ public class ActorController : MonoBehaviour
 		bool onWallRight = Physics.Raycast(right, leftOffset);
 		
 		float hVelocity = rigidbody.velocity.x;
-		//ActorAction lastAction = currentAction;
-		//float lastFacingDirection = facingDirection.x;
-		
-		
 		
 		// Calculate new currentAction, facingDirection, and jump* values.
 		if (alive)
@@ -169,6 +172,8 @@ public class ActorController : MonoBehaviour
 			
 			if (Mathf.Abs(hVelocity) > 0.1f)
 				facingDirection = hVelocity > 0 ? rightFull : leftFull;
+			else if (Mathf.Abs (horizontalLookIntention) > 0.1f)
+				facingDirection = horizontalLookIntention > 0 ? rightFull : leftFull;
 			else
 				facingDirection = facingDirection.x > 0 ? rightHalf : leftHalf;
 			
@@ -229,58 +234,58 @@ public class ActorController : MonoBehaviour
 		bool facingRight = facingDirection.x > 0;
 		bool startAnimImmediately = false;
 		bool actorCrouching = false;
-		int animationId = facingRight ? rIdleAnim : lIdleAnim;
+		int animationId = facingRight ? animations.rIdle : animations.lIdle;
 		
 		if (!alive)
 		{
-			animationId = facingRight ? rDeathAnim : lDeathAnim;
+			animationId = facingRight ? animations.rDeath : animations.lDeath;
 			startAnimImmediately = true;
 		}
 		else if (currentAction == ActorAction.Jump)
 		{
 			if (jumpMode == JumpMode.JumpLeft)
-				animationId = lJumpLeftAnim;
+				animationId = animations.lJumpLeft;
 			else if (jumpMode == JumpMode.JumpRight)
-				animationId = rJumpRightAnim;
+				animationId = animations.rJumpRight;
 			else
-				animationId = facingRight ? rJumpAnim : lJumpAnim;
+				animationId = facingRight ? animations.rJump : animations.lJump;
 			startAnimImmediately = true;
 		}
 		else if (!onGround)
 		{
 			if (currentAction == ActorAction.RunLeft)
-				animationId = lRunAnim;
+				animationId = animations.lRun;
 			else if (currentAction == ActorAction.RunRight)
-				animationId = rRunAnim;
+				animationId = animations.rRun;
 			else if (currentAction == ActorAction.Attack)
 			{
-				animationId = facingRight ? rAttackAnim : lAttackAnim;
+				animationId = facingRight ? animations.rAttack : animations.lAttack;
 				startAnimImmediately = true;
 			}
 			else if (currentAction == ActorAction.RunLeftAttack)
 			{
-				animationId = lRunningAttackAnim;
+				animationId = animations.lRunningAttack;
 				startAnimImmediately = true;
 			}
 			else if (currentAction == ActorAction.RunRightAttack)
 			{
-				animationId = rRunningAttackAnim;
+				animationId = animations.rRunningAttack;
 				startAnimImmediately = true;
 			}
 			else if (onWallLeft && currentAction == ActorAction.Crouch)
 			{
-				animationId = rWallGrabAnim;
+				animationId = animations.rWallGrab;
 				facingDirection = rightFull;	// this may be a confusing place for this but anywhere else would require redundant if statements
 				startAnimImmediately = true;
 			}
 			else if (onWallRight && currentAction == ActorAction.Crouch)
 			{
-				animationId = lWallGrabAnim;
+				animationId = animations.lWallGrab;
 				facingDirection = leftFull;		// this may be a confusing place for this but anywhere else would require redundant if statements
 				startAnimImmediately = true;
 			}
 			else 
-				animationId = facingRight ? rFallingIdleAnim : lFallingIdleAnim;
+				animationId = facingRight ? animations.rFallingIdle : animations.lFallingIdle;
 			
 			if (isCrouching && currentAction == ActorAction.Crouch)
 				actorCrouching = true;
@@ -293,19 +298,19 @@ public class ActorController : MonoBehaviour
 			{
 				startAnimImmediately = true;
 				if (hVelocity > 0.2f || (hVelocity > 0 && currentAction == ActorAction.RunRightAttack))
-					animationId = rRunningAttackAnim;
+					animationId = animations.rRunningAttack;
 				else if (hVelocity < -0.2f || (hVelocity < 0 && currentAction == ActorAction.RunLeftAttack))
-					animationId = lRunningAttackAnim;
+					animationId = animations.lRunningAttack;
 				else 
-					animationId = facingRight ? rAttackAnim : lAttackAnim;
+					animationId = facingRight ? animations.rAttack : animations.lAttack;
 			}
 			else if (hVelocity > 0.2f || (hVelocity > 0 && currentAction == ActorAction.RunRight))
-				animationId = rRunAnim;
+				animationId = animations.rRun;
 			else if (hVelocity < -0.2f || (hVelocity < 0 && currentAction == ActorAction.RunLeft))
-				animationId = lRunAnim;
+				animationId = animations.lRun;
 			else if (currentAction == ActorAction.Crouch)
 			{
-				animationId = facingRight ? rCrouchAnim : lCrouchAnim;
+				animationId = facingRight ? animations.rCrouch : animations.lCrouch;
 				actorCrouching = true;
 			}
 		}
@@ -342,7 +347,7 @@ public class ActorController : MonoBehaviour
 				collider.height = deadHeight;
 				collider.radius = deadWidth * 0.5f;
 				collider.center = deadOffset;
-				collider.direction = 0; // change capsule direction to x axis.
+				//collider.direction = 0; // change capsule direction to x axis.
 			}
 		}
 	

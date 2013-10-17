@@ -3,15 +3,17 @@ using System.Collections;
 
 public class PlayerMeleeHandler : MonoBehaviour {
 	
+	private PlayerController pc;
 	
-	
-	// Use this for initialization
-	void Start () {
-	
+	void Start()
+	{
+		pc = transform.parent.gameObject.GetComponent<PlayerController>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	void OnTriggerEnter(Collider other)
+	{
+		ActorController otherAC = other.gameObject.GetComponent<ActorController>();
+		if (otherAC)
+			otherAC.actorState.takeDamage(pc.attackDamage);
 	}
 }
