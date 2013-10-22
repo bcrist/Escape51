@@ -77,7 +77,7 @@ public class AIController : ActorController {
 				
 				attackIntention = range < attackRange && (facingRight && playerToRight || !facingRight && !playerToRight);
 				jumpIntention = false;
-				crouchIntention = horizontalIntention == 0;
+				crouchIntention = horizontalIntention == 0 && Mathf.Abs (rigidbody.velocity.x) > 0.1f;
 			}
 			else
 			{

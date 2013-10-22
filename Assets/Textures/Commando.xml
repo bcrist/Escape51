@@ -42,50 +42,91 @@
         <w>128</w>
         <h>128</h>
     </image>
-	
+	<image>
+        <id>6</id>
+        <x>0</x>
+        <y>128</y>
+        <w>128</w>
+        <h>128</h>
+    </image>
+    <image>
+        <id>7</id>
+        <x>128</x>
+        <y>128</y>
+        <w>128</w>
+        <h>128</h>
+    </image>
+    <image>
+        <id>8</id>
+        <x>256</x>
+        <y>128</y>
+        <w>128</w>
+        <h>128</h>
+    </image>
 	
 	
 	
 	
 	<image>
-        <id>8</id>
-        <x>128</x>
-        <y>384</y>
-        <w>-128</w>
-        <h>128</h>
-    </image>
-    <image>
         <id>9</id>
-        <x>256</x>
+        <x>128</x>
         <y>384</y>
         <w>-128</w>
         <h>128</h>
     </image>
     <image>
         <id>10</id>
-        <x>384</x>
-        <y>256</y>
+        <x>256</x>
+        <y>384</y>
         <w>-128</w>
         <h>128</h>
     </image>
     <image>
         <id>11</id>
-        <x>128</x>
+        <x>384</x>
         <y>256</y>
         <w>-128</w>
         <h>128</h>
     </image>
     <image>
         <id>12</id>
-        <x>256</x>
+        <x>128</x>
         <y>256</y>
         <w>-128</w>
         <h>128</h>
     </image>
     <image>
         <id>13</id>
+        <x>256</x>
+        <y>256</y>
+        <w>-128</w>
+        <h>128</h>
+    </image>
+    <image>
+        <id>14</id>
         <x>384</x>
         <y>256</y>
+        <w>-128</w>
+        <h>128</h>
+    </image>
+	<image>
+        <id>15</id>
+        <x>128</x>
+        <y>128</y>
+        <w>-128</w>
+        <h>128</h>
+    </image>
+    <image>
+        <id>16</id>
+        <x>256</x>
+        <y>128</y>
+        <w>-128</w>
+        <h>128</h>
+    </image>
+    <image>
+        <id>17</id>
+        <x>384</x>
+        <y>128</y>
         <w>-128</w>
         <h>128</h>
     </image>
@@ -103,25 +144,25 @@
 	<animation>
 		<id>1</id> <!-- run -->
 		<next>1</next>
-		<frame id="0" length="80" />
-		<frame id="1" length="80" />
+		<frame id="7" length="80" />
+		<frame id="8" length="80" />
 	</animation>
 	
     <animation>
         <id>2</id> <!-- fall -->
-        <frame id="2" length="80" />
+        <frame id="5" length="80" />
     </animation>
 	
 	<animation>
         <id>3</id> <!-- death -->
-        <frame id="3" length="80" />
+        <frame id="6" length="80" />
     </animation>
 	
 	<animation>
-        <id>4</id> <!-- shoot -->
+        <id>4</id> <!-- punch -->
 		<next>0</next>
-        <frame id="4" length="80" />
-		<frame id="5" length="80" />
+        <frame id="0" length="80" />
+		<frame id="1" length="80" />
     </animation>
 	
 	
@@ -129,31 +170,31 @@
 	
 	<animation>
 		<id>5</id> <!-- idle -->
-		<frame id="8" length="80" />
+		<frame id="9" length="80" />
 	</animation>
 	
 	<animation>
 		<id>6</id> <!-- run -->
 		<next>6</next>
-		<frame id="8" length="80" />
-		<frame id="9" length="80" />
+		<frame id="16" length="80" />
+		<frame id="17" length="80" />
 	</animation>
 	
     <animation>
         <id>7</id> <!-- fall -->
-        <frame id="10" length="80" />
+        <frame id="14" length="80" />
     </animation>
 	
 	<animation>
         <id>8</id> <!-- death -->
-        <frame id="11" length="80" />
+        <frame id="15" length="80" />
     </animation>
 	
 	<animation>
         <id>9</id> <!-- shoot -->
 		<next>5</next>
-        <frame id="12" length="80" />
-		<frame id="13" length="80" />
+        <frame id="9" length="80" />
+		<frame id="10" length="80" />
     </animation>
 	
 </spritedata>

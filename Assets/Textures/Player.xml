@@ -100,87 +100,225 @@
 	
 	<image>
         <id>12</id>
-        <x>0</x>
-        <y>0</y>
-        <w>128</w>
+        <x>128</x>
+        <y>384</y>
+        <w>-128</w>
         <h>128</h>
     </image>
 
     <image>
         <id>13</id>
-        <x>128</x>
-        <y>0</y>
-        <w>128</w>
+        <x>256</x>
+        <y>384</y>
+        <w>-128</w>
         <h>128</h>
     </image>
 	
 	<image>
 		<id>14</id>
-		<x>256</x>
-		<y>64</y>
-		<w>128</w>
-		<h>64</h>
+		<x>384</x>
+		<y>384</y>
+		<w>-128</w>
+		<h>128</h>
 	</image>
 	
 	<image>
 		<id>15</id>
-		<x>384</x>
-		<y>64</y>
-		<w>128</w>
-		<h>64</h>
+		<x>512</x>
+		<y>384</y>
+		<w>-128</w>
+		<h>128</h>
 	</image>
 	
-	<image>
-		<id>16</id>
-		<x>256</x>
-		<y>0</y>
-		<w>128</w>
-		<h>64</h>
-	</image>
 	
 	<image>
-		<id>17</id>
-		<x>384</x>
-		<y>0</y>
-		<w>128</w>
-		<h>64</h>
-	</image>
+        <id>16</id>
+        <x>128</x>
+        <y>256</y>
+        <w>-128</w>
+        <h>128</h>
+    </image>
+
+    <image>
+        <id>17</id>
+        <x>256</x>
+        <y>256</y>
+        <w>-128</w>
+        <h>128</h>
+    </image>
 	
 	<image>
 		<id>18</id>
-		<x>0</x>
-		<y>0</y>
-		<w>256</w>
-		<h>256</h>
+		<x>384</x>
+		<y>256</y>
+		<w>-128</w>
+		<h>128</h>
 	</image>
+	
 	<image>
 		<id>19</id>
-		<x>0</x>
-		<y>0</y>
-		<w>512</w>
-		<h>512</h>
+		<x>512</x>
+		<y>256</y>
+		<w>-128</w>
+		<h>128</h>
+	</image>
+	
+	<image>
+        <id>20</id>
+        <x>128</x>
+        <y>128</y>
+        <w>-128</w>
+        <h>128</h>
+    </image>
+
+    <image>
+        <id>21</id>
+        <x>256</x>
+        <y>128</y>
+        <w>-128</w>
+        <h>128</h>
+    </image>
+	
+	<image>
+		<id>22</id>
+		<x>384</x>
+		<y>128</y>
+		<w>-128</w>
+		<h>128</h>
+	</image>
+	
+	<image>
+		<id>23</id>
+		<x>512</x>
+		<y>128</y>
+		<w>-128</w>
+		<h>128</h>
 	</image>
 	
 	
-	<animation><id>0</id><next>0</next><frame id="0" length="120" /></animation>
-	<animation><id>1</id><next>1</next><frame id="1" length="120" /></animation>
-	<animation><id>2</id><next>2</next><frame id="2" length="120" /></animation>
-	<animation><id>3</id><next>3</next><frame id="3" length="120" /></animation>
-	<animation><id>4</id><next>4</next><frame id="4" length="120" /></animation>
-	<animation><id>5</id><next>5</next><frame id="5" length="120" /></animation>
-	<animation><id>6</id><next>6</next><frame id="6" length="120" /></animation>
-	<animation><id>7</id><next>7</next><frame id="7" length="120" /></animation>
-	<animation><id>8</id><next>8</next><frame id="8" length="500" /></animation>
-	<animation><id>9</id><next>9</next><frame id="9" length="500" /></animation>
-	<animation><id>10</id><next>10</next><frame id="10" length="500" /></animation>
-	<animation><id>11</id><next>11</next><frame id="11" length="500" /></animation>
-	<animation><id>12</id><next>12</next><frame id="12" length="120" /></animation>
-	<animation><id>13</id><next>13</next><frame id="13" length="120" /></animation>
-	<animation><id>14</id><next>14</next><frame id="14" length="220" /></animation>
-	<animation><id>15</id><next>15</next><frame id="15" length="220" /></animation>
-	<animation><id>16</id><next>16</next><frame id="16" length="220" /></animation>
-	<animation><id>17</id><next>17</next><frame id="17" length="220" /></animation>
-	<animation><id>18</id><next>18</next><frame id="18" length="1000" /></animation>
-	<animation><id>19</id><next>19</next><frame id="19" length="1000" /></animation>
+
+	
+	
+	<animation>
+		<id>0</id> <!-- l idle -->
+		<next>0</next>
+		<frame id="18" length="120" />
+		<frame id="20" length="120" />
+	</animation>
+	
+	<animation>
+		<id>1</id> <!-- r idle -->
+		<next>1</next>
+		<frame id="6" length="220" />
+		<frame id="8" length="220" />
+	</animation>
+	
+	<animation>
+		<id>2</id> <!-- l fidle -->
+		<frame id="17" length="80" />
+	</animation>
+	
+	<animation>
+		<id>3</id> <!-- r fidle -->
+		<frame id="5" length="80" />
+	</animation>
+	
+	<animation>
+		<id>4</id><!-- l wgrab -->
+		<frame id="3" length="80" />
+	</animation>
+	
+	<animation>
+		<id>5</id><!-- r wgrab -->
+		<frame id="15" length="80" />
+	</animation>
+	
+	<animation>
+		<id>6</id><!-- l run -->
+		<next>6</next>
+		<frame id="21" length="80" />
+		<frame id="22" length="80" />
+		<frame id="23" length="80" />
+	</animation>
+	
+	<animation>
+		<id>7</id><!-- r run -->
+		<next>7</next>
+		<frame id="9" length="80" />
+		<frame id="10" length="80" />
+		<frame id="11" length="80" />
+	</animation>
+	
+	<animation>
+		<id>8</id><!-- l jump -->
+		<next>2</next>
+		<frame id="17" length="80" />
+	</animation>
+	
+	<animation>
+		<id>9</id><!-- r jump -->
+		<next>3</next>
+		<frame id="5" length="80" />
+	</animation>
+	
+	<animation>
+		<id>10</id><!-- l wjump -->
+		<next>2</next>
+		<frame id="17" length="80" />
+	</animation>
+	
+	<animation>
+		<id>11</id><!-- r wjump -->
+		<next>3</next>
+		<frame id="5" length="80" />
+	</animation>
+	
+	<animation>
+		<id>12</id> <!-- l crouch -->
+		<frame id="14" length="80" />
+	</animation>
+	
+	<animation>
+		<id>13</id><!-- r crouch -->
+		<frame id="2" length="80" />
+	</animation>
+	
+	<animation>
+		<id>14</id><!-- l attack -->
+		<next>0</next>
+		<frame id="14" length="80" />
+		<frame id="16" length="80" />
+	</animation>
+	
+	<animation>
+		<id>15</id> <!-- r attack -->
+		<next>1</next>
+		<frame id="2" length="80" />
+		<frame id="4" length="80" />
+	</animation>
+	
+	<animation>
+		<id>16</id><!-- l run attack -->
+		<next>6</next>
+		<frame id="14" length="80" />
+		<frame id="16" length="80" />
+	</animation>
+	
+	<animation>
+		<id>17</id><!-- r run attack -->
+		<next>7</next>
+		<frame id="2" length="80" />
+		<frame id="4" length="80" />
+	</animation>
+	
+	<animation>
+		<id>18</id><!-- l death -->
+		<frame id="19" length="80" />
+	</animation>
+	
+	<animation>
+		<id>19</id><!-- r death -->
+		<frame id="7" length="80" />
+	</animation>
 	
 </spritedata>

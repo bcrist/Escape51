@@ -9,7 +9,7 @@ public class RangedAIController : AIController
 	public Vector3 projectileFacingDirectionWeight;
 	public float projectileStartPoint;
 	public float projectileLifetime;
-	public float projectileDamage;
+	public int projectileDamage;
 	
 	public float attackDelay = 0.05f;
 	private float attackDelayLeft = 0;
@@ -55,9 +55,9 @@ public class RangedAIController : AIController
 				
 				projectile.transform.position = startPosition;
 				projectile.rigidbody.velocity = projectileVel;
-				//ProjectileController pc = projectile.GetComponent<ProjectileController>();
-				//pc.lifetime = projectileLifetime;
-				//pc.damage = projectileDamage;
+				ProjectileController pc = projectile.GetComponent<ProjectileController>();
+				pc.lifetime = projectileLifetime;
+				pc.damage = projectileDamage;
 			}
 		}
 	}

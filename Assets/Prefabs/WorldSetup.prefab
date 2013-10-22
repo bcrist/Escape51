@@ -241,7 +241,7 @@ MonoBehaviour:
   posK2: .5
   velK1: 5
   velK2: .330000013
-  cameraOffset: {x: 0, y: .5, z: -8}
+  cameraOffset: {x: 0, y: .5, z: -6}
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
