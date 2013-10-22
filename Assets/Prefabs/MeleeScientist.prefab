@@ -47,7 +47,7 @@ GameObject:
   - 54: {fileID: 5400000}
   - 136: {fileID: 13600004}
   - 114: {fileID: 11400006}
-  - 114: {fileID: 11400004}
+  - 114: {fileID: 11400008}
   m_Layer: 2
   m_Name: MeleeScientist
   m_TagString: Untagged
@@ -131,7 +131,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 58b4365242b356f438a11fffdaf65691, type: 2}
+  - {fileID: 2100000, guid: 87706d9210781914aa77935068fee2f3, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -149,7 +149,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 6fef505e753d25b4aa00baf6feeed73f, type: 2}
+  - {fileID: 2100000, guid: 1a6a53a18192253408084d558face940, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa488cf3ce431a34cbff77095b4a9ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11400004
+--- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -214,7 +214,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58d7d51a56c5edb4991bdbc2d6de4dab, type: 3}
+  m_Script: {fileID: 11500000, guid: c6f5c78edda75684d819c84b45ddf53e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteData: {fileID: 4900000, guid: 41310c45b731333468c6e8a9ce0f4f4d, type: 3}
+  initialAnimationId: 0
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69dc2b46b070db440839cf26a2fd5749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHorizontalVelocity: 2.5
@@ -226,14 +239,14 @@ MonoBehaviour:
   canWallJump: 0
   attackTimeout: .300000012
   movingAttackTimeout: .600000024
-  normalHeight: 1
+  normalHeight: .899999976
   normalWidth: .400000006
   normalOffset: {x: 0, y: 0, z: 0}
   crouchHeight: 1
   crouchWidth: .5
   crouchOffset: {x: 0, y: 0, z: 0}
-  deadHeight: .200000003
-  deadWidth: .400000006
+  deadHeight: .800000012
+  deadWidth: .300000012
   deadOffset: {x: 0, y: 0, z: 0}
   animations:
     lIdle: 0
@@ -242,7 +255,7 @@ MonoBehaviour:
     rFallingIdle: 3
     lWallGrab: 4
     rWallGrab: 5
-    lRun: 8
+    lRun: 6
     rRun: 7
     lJump: 8
     rJump: 9
@@ -262,9 +275,9 @@ MonoBehaviour:
   rightFull: {x: 1, y: -.150000006, z: 0}
   sightRange: 5
   hearingRange: 3
-  attackRange: 5
-  maxPreferredRange: 2
-  minPreferredRange: 1
+  attackRange: 1
+  maxPreferredRange: .600000024
+  minPreferredRange: .300000012
   attentionSpan: 2
   enableIdleHoldPosition: 1
   enableIdleWander: 1
@@ -272,19 +285,9 @@ MonoBehaviour:
   patrolWaypoint1: {x: 0, y: 0, z: 0}
   patrolWaypoint2: {x: 0, y: 0, z: 0}
   waypointLaziness: 0
---- !u!114 &11400006
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6f5c78edda75684d819c84b45ddf53e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteData: {fileID: 4900000, guid: 41310c45b731333468c6e8a9ce0f4f4d, type: 3}
-  initialAnimationId: 0
+  attackDelay: .0500000007
+  attackLength: 2
+  attackDamage: 40
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

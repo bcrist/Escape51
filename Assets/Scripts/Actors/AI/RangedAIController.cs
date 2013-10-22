@@ -33,10 +33,15 @@ public class RangedAIController : AIController
 			if (attackDelayLeft <= 0)
 			{
 				Vector3 projectileVel = projectileConstantDirection;
-				projectileVel *= projectileFacingDirectionWeight;
+				projectileVel.x *= projectileConstantDirectionWeight.x;
+				projectileVel.y *= projectileConstantDirectionWeight.y;
+				projectileVel.z *= projectileConstantDirectionWeight.z;
 				
 				Vector3 facingDir = facingDirection;
-				facingDir *= projectileFacingDirectionWeight;
+				facingDir.x *= projectileFacingDirectionWeight.x;
+				facingDir.y *= projectileFacingDirectionWeight.y;
+				facingDir.z *= projectileFacingDirectionWeight.z;
+				
 				
 				projectileVel += facingDir;
 				
@@ -46,13 +51,13 @@ public class RangedAIController : AIController
 				
 				projectileVel *= projectileVelocity;
 				
-				GameObject projectile = Instantiate (Resources.Load(projectileResource));
+				GameObject projectile = Instantiate (Resources.Load(projectileResource)) as GameObject;
 				
 				projectile.transform.position = startPosition;
 				projectile.rigidbody.velocity = projectileVel;
-				ProjectileController pc = projectile.GetComponent<ProjectileController>();
-				pc.lifetime = projectileLifetime;
-				pc.damage = projectileDamage;
+				//ProjectileController pc = projectile.GetComponent<ProjectileController>();
+				//pc.lifetime = projectileLifetime;
+				//pc.damage = projectileDamage;
 			}
 		}
 	}
